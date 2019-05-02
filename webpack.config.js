@@ -8,11 +8,19 @@ const PATHS = {
 };
 
 module.exports = {
-    entry: './client/index.js',
+    entry: './client',
 
     devServer: {
         contentBase: './dist',
         hot: true,
+        host: 'localhost',
+        port: 8090,
+        proxy: {
+            '**': {
+                target: 'http://localhost:1337',
+                secure: false,
+            },
+        },
     },
 
     module: {
