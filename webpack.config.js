@@ -5,24 +5,27 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PATHS = {
     app: path.join(__dirname, 'client'),
     dist: path.join(__dirname, 'dist'),
-    style: path.join(__dirname, 'client/style/main.less'),
 };
 
 module.exports = {
     entry: './client/index.js',
 
+    devServer: {
+        contentBase: './dist',
+        hot: true,
+    },
 
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
+                use: ['babel-loader'],
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: ['babel-loader', 'eslint-loader']
+                use: ['babel-loader', 'eslint-loader'],
             },
             {
                 test: /\.css$/,
@@ -62,16 +65,16 @@ module.exports = {
                 test: /\.(jpg|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: 'file-loader',
             },
-        ]
+        ],
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx', '.less', '.css'],
+        extensions: ['.js', '.jsx', '.less', '.css'],
         modules: ['node_modules', PATHS.app, path.join(__dirname, '.')],
     },
     output: {
         path: PATHS.dist,
         publicPath: '/',
-        filename: 'client.js'
+        filename: 'boilerplate.js',
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
@@ -84,8 +87,4 @@ module.exports = {
             inject: false,
         }),
     ],
-    devServer: {
-        contentBase: './dist',
-        hot: true
-    }
 };
