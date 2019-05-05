@@ -47,3 +47,26 @@ export const getAllItems = () => {
             });
     };
 };
+
+export const updateItem = item => {
+    return dispatch => {
+        dispatch({
+            type: 'ITEMS_UPDATE_LOADING',
+        });
+
+        return axios
+            .put('/api/todo', item)
+            .then(() => {
+                dispatch({
+                    type: 'ITEMS_UPDATE_LOADED',
+                });
+                dispatch(getAllItems());
+            })
+            .catch(response => {
+                dispatch({
+                    type: 'ITEMS_UPDATE_FAILED',
+                    error: response.message,
+                });
+            });
+    };
+};

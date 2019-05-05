@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { addItemAction, getAllItems } from '../actions/todoActions';
+import TodoItem from './TodoItem';
 
 class TodoList extends Component {
     constructor(props) {
@@ -62,7 +63,7 @@ class TodoList extends Component {
                 </form>
                 <ul>
                     {todos.map(todo => {
-                        return <li>{todo.title}</li>;
+                        return <TodoItem key={todo.id} item={todo} />
                     })}
                 </ul>
             </React.Fragment>
