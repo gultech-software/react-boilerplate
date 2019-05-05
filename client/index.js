@@ -12,6 +12,7 @@ import rootReducer from './reducers/rootReducer';
 
 import 'typeface-roboto';
 import './style/main.less';
+import 'font-awesome/css/font-awesome.min.css';
 
 const logger = createLogger();
 const store = createStore(rootReducer, applyMiddleware(thunk, promise, logger));
