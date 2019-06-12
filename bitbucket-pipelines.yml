@@ -17,6 +17,6 @@ pipelines:
     - step:
         name: Build Docker container
         script:
-          - docker built -t boilerplate . --pull
+          - docker build -t boilerplate . --pull
         services:
           - docker
