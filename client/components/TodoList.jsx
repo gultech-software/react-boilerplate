@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import TodoItem from './TodoItem';
@@ -6,17 +6,17 @@ import Loading from './Loading';
 
 const TodoList = ({ todos, loading }) => {
     if (loading) {
-        return <Loading />
+        return <Loading />;
     }
 
     return (
         <ul>
             {todos.map(todo => {
-                return <TodoItem key={todo.id} item={todo} />
+                return <TodoItem key={todo.id} item={todo} />;
             })}
         </ul>
     );
-}
+};
 
 TodoList.defaultProps = {
     todos: [],
