@@ -17,4 +17,6 @@ pipelines:
     - step:
         name: Tag Git State
         script:
-          - echo tag git
+          - VERSION=`git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; print $0}'`
+          - git tag $VERSION
+          - git push origin $VERSION
