@@ -7,26 +7,12 @@ image: node:10.15.3
 
 pipelines:
   default:
-    - step: Build Node application
+    - step:
         caches:
           - node
         script: # Modify the commands below to build your repository.
           - npm install
           - npm run build
-    - step: Tag version
-        caches:
-            -node
+    - step:
         script:
-            - echo tag version in git with number
-    - step: Create Docker container
-        caches:
-            - node
-        script:
-            - docker version
-        services:
-            - docker
-    - step: Deploy to Docker Hub
-        caches:
-            - node
-        script:
-            - echo deploy to Docker Hub
+          - echo tag git
