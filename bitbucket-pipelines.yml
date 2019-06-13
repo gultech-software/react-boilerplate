@@ -15,8 +15,17 @@ pipelines:
           - npm install
           - npm run build
     - step:
-        name: Build Docker container
+        name: Tag Code
+        caches:
+          - node
         script:
-          - docker build -t boilerplate . --pull
+          - git tag $BITBUCKET_BUILD_NUMBER
+          - git push origin $BITBUCKET_BUILD_NUMBER
+    - step:
+        name: Build Docker Container and Deploy to Docker Hub
+        script:
+          - docker login -u $HUB_USERNAME -p $HUB_PASSWORD
+          - docker build -t gultech/boilerplate:$BITBUCKET_BUILD_NUMBER .
+          - docker push gultech/boilerplate:$BITBUCKET_BUILD_NUMBER
         services:
           - docker
