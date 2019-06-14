@@ -10,3 +10,4 @@ Pipeline
 - Sette opp bygg med webhook
 - automatisk deploy til boilerplate.gultech.no
 
+

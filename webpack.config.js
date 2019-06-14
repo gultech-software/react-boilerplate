@@ -7,21 +7,12 @@ const PATHS = {
     dist: path.join(__dirname, 'dist'),
 };
 
-module.exports = {
-    entry: './client',
-
-    devServer: {
-        contentBase: './dist',
-        hot: true,
-        host: 'localhost',
-        port: 8090,
-        proxy: {
-            '**': {
-                target: 'http://localhost:1337',
-                secure: false,
-            },
-        },
-    },
+module.exports = options => ({
+    mode: options.mode,
+    target: 'web',
+    entry: options.entry,
+    devServer: options.devServer,
+    devtool: options.devtool,
 
     module: {
         rules: [
@@ -83,16 +74,15 @@ module.exports = {
         path: PATHS.dist,
         publicPath: '/',
         filename: 'boilerplate.js',
+        chunkFilename: 'boilerplate.chunk.js',
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({
-            template: 'node_modules/html-webpack-template/index.ejs',
-            title: 'Boilerplate',
-            appMountId: 'app',
-            favicon: './client/assets/gultech.png',
-            chunksSortMode: 'dependency',
-            inject: false,
-        }),
-    ],
-};
+    plugins: options.plugins,
+
+    optimization: {
+        namedModules: true,
+        splitChunks: {
+            name: 'vendor',
+            minChunks: 2,
+        },
+    },
+});

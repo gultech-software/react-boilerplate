@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { addItemAction, getAllItems } from '../actions/todoActions';
 import TodoList from './TodoList';
-import Loading from './Loading';
 
 class Home extends Component {
     constructor(props) {
