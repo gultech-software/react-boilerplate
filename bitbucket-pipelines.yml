@@ -6,14 +6,6 @@
 image: node:10.15.3
 
 pipelines:
-  default:
-    - step:
-        name: Build Application
-        caches:
-          - node
-        script: # Modify the commands below to build your repository.
-          - npm install
-          - npm run build
   branches:
     master:
     - step:
@@ -32,6 +24,7 @@ pipelines:
           - git push origin release-$BITBUCKET_BUILD_NUMBER
     - step:
         name: Build Docker Container and Deploy to Docker Hub
+        deployment: production
         script:
           - docker login -u $HUB_USERNAME -p $HUB_PASSWORD
           - docker build -t gultech/boilerplate . --pull
