@@ -34,7 +34,7 @@ pipelines:
         name: Build Docker Container and Deploy to Docker Hub
         script:
           - docker login -u $HUB_USERNAME -p $HUB_PASSWORD
-          - docker build -t gultech/boilerplate:$BITBUCKET_BUILD_NUMBER .
-          - docker push gultech/boilerplate:$BITBUCKET_BUILD_NUMBER
+          - docker build -t gultech/boilerplate . --pull
+          - docker push gultech/boilerplate
         services:
           - docker
