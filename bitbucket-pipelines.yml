@@ -32,6 +32,7 @@ pipelines:
           - git push origin release-$BITBUCKET_BUILD_NUMBER
     - step:
         name: Build Docker Container and Deploy to Docker Hub
+        deployment: prod
         script:
           - docker login -u $HUB_USERNAME -p $HUB_PASSWORD
           - docker build -t gultech/boilerplate . --pull
