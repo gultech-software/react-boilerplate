@@ -6,7 +6,8 @@
 image: node:10.15.3
 
 pipelines:
-  default:
+  branches:
+    master:
     - step:
         name: Build Application
         caches:
@@ -29,3 +30,11 @@ pipelines:
           - docker push gultech/boilerplate:$BITBUCKET_BUILD_NUMBER
         services:
           - docker
+    default:
+    - step:
+        name: Build Application
+        caches:
+          - node
+        script: # Modify the commands below to build your repository.
+          - npm install
+          - npm run build
