@@ -28,8 +28,8 @@ pipelines:
         caches:
           - node
         script:
-          - git tag $BITBUCKET_BUILD_NUMBER
-          - git push origin $BITBUCKET_BUILD_NUMBER
+          - git tag release-$BITBUCKET_BUILD_NUMBER
+          - git push origin release-$BITBUCKET_BUILD_NUMBER
     - step:
         name: Build Docker Container and Deploy to Docker Hub
         script:
