@@ -8,10 +8,10 @@ import promise from 'redux-promise';
 import { createLogger } from 'redux-logger';
 
 import AppRouter from './AppRouter';
-import rootReducer from './reducers/rootReducer';
+import rootReducer from './store/rootReducer';
 
 import 'typeface-roboto';
-import './style/main.less';
+import './assets/style/main.less';
 import 'font-awesome/css/font-awesome.min.css';
 
 const logger = createLogger();

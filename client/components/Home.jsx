@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import TodoList from './TodoList';
-import { addItemAction, getAllItemsAction } from '../actions/todoActions';
+import { addItemAction, getAllItemsAction } from '../store/todo/todoActions';
 
 const Home = () => {
     const dispatch = useDispatch();

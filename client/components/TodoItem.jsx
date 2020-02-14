@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { updateItemAction } from '../actions/todoActions';
+import { updateItemAction } from '../store/todo/todoActions';
 
 const TodoItem = ({ item }) => {
     const dispatch = useDispatch();
