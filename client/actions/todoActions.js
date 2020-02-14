@@ -14,7 +14,7 @@ export const addItemAction = item => {
                     payload: response.data,
                 });
 
-                dispatch(getAllItems());
+                dispatch(getAllItemsAction());
             })
             .catch(response => {
                 dispatch({
@@ -25,7 +25,7 @@ export const addItemAction = item => {
     };
 };
 
-export const getAllItems = () => {
+export const getAllItemsAction = () => {
     return dispatch => {
         dispatch({
             type: 'ITEMS_GET_LOADING',
@@ -48,7 +48,7 @@ export const getAllItems = () => {
     };
 };
 
-export const updateItem = item => {
+export const updateItemAction = item => {
     return dispatch => {
         dispatch({
             type: 'ITEMS_UPDATE_LOADING',
@@ -60,7 +60,7 @@ export const updateItem = item => {
                 dispatch({
                     type: 'ITEMS_UPDATE_LOADED',
                 });
-                dispatch(getAllItems());
+                dispatch(getAllItemsAction());
             })
             .catch(response => {
                 dispatch({

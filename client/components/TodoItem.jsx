@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { connect } from 'react-redux';
-import { updateItem } from '../actions/todoActions';
+import { useDispatch } from 'react-redux';
+import { updateItemAction } from '../actions/todoActions';
 
-const TodoItem = ({ item, dispatch }) => {
+const TodoItem = ({ item }) => {
+    const dispatch = useDispatch();
     return (
         <li>
             <input
                 type="checkbox"
-                checked={item.done}
-                onClick={() => {
+                checked={!!item.done}
+                onChange={() => {
                     dispatch(
-                        updateItem({
+                        updateItemAction({
                             ...item,
                             done: !item.done,
                         })
@@ -21,17 +22,18 @@ const TodoItem = ({ item, dispatch }) => {
             />
             {item.title}
             <span className="right">
-                {item.updatedAt === undefined
-                    ? moment(item.updatedAt).format('DD-MM-YYYY HH:mm:ss')
-                    : moment(item.updatedAt).format('DD-MM-YYYY HH:mm:ss')}
+                {moment(item.updatedAt).format('DD.MM.YYYY HH:mm:ss')}
             </span>
         </li>
     );
 };
 
 TodoItem.propTypes = {
-    item: PropTypes.shape.isRequired,
-    dispatch: PropTypes.func.isRequired,
+    item: PropTypes.shape({
+        done: PropTypes.bool,
+        title: PropTypes.string,
+        updatedAt: PropTypes.string,
+    }).isRequired,
 };
 
-export default connect()(TodoItem);
+export default TodoItem;

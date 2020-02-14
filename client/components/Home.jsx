@@ -1,105 +1,41 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { addItemAction, getAllItems } from '../actions/todoActions';
 import TodoList from './TodoList';
+import { addItemAction, getAllItemsAction } from '../actions/todoActions';
 
-class Home extends Component {
-    constructor(props) {
-        super(props);
+const Home = () => {
+    const dispatch = useDispatch();
+    const [title, setTitle] = useState('');
 
-        this.state = {
-            title: '',
-        };
+    React.useEffect(() => {
+        dispatch(getAllItemsAction());
+    }, []);
 
-        this.addItem = this.addItem.bind(this);
-        this.updateTitle = this.updateTitle.bind(this);
-    }
-
-    componentDidMount() {
-        this.props.getTodos();
-    }
-
-    addItem(e) {
+    const addItem = e => {
         e.preventDefault();
-        const { addItem } = this.props;
-        const { title } = this.state;
         if (title.trim().length > 0) {
-            addItem({
-                title,
-            });
+            dispatch(addItemAction({ title }));
+            setTitle('');
         }
-
-        this.setState({
-            title: '',
-        });
-    }
-
-    updateTitle(event) {
-        this.setState({
-            title: event.target.value,
-        });
-    }
-
-    render() {
-        const { todos, loading } = this.props;
-        const { title } = this.state;
-
-        return (
-            <React.Fragment>
-                <h1>Things todo:</h1>
-                <form>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={this.updateTitle}
-                    />
-                    <input
-                        type="submit"
-                        value="Add Item"
-                        onClick={this.addItem}
-                    />
-                    <TodoList todos={todos} loading={loading} />
-                </form>
-            </React.Fragment>
-        );
-    }
-}
-
-Home.defaultProps = {
-    todos: [],
-    loading: false,
-};
-
-Home.propTypes = {
-    addItem: PropTypes.func.isRequired,
-    getTodos: PropTypes.func.isRequired,
-    todos: PropTypes.arrayOf(PropTypes.shape({})),
-    loading: PropTypes.bool,
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        addItem: item => {
-            dispatch(addItemAction(item));
-        },
-        getTodos: () => {
-            dispatch(getAllItems());
-        },
     };
+
+    return (
+        <>
+            <h1>Things todo:</h1>
+            <form>
+                <input
+                    type="text"
+                    value={title}
+                    onChange={e => {
+                        setTitle(e.target.value);
+                    }}
+                />
+                <input type="submit" value="Add Item" onClick={addItem} />
+                <TodoList />
+            </form>
+        </>
+    );
 };
 
-const mapStateToProps = state => {
-    const { todoReducer } = state;
-
-    return {
-        loading: todoReducer.loading,
-        todos: todoReducer.todos,
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Home);
+export default Home;

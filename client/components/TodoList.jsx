@@ -1,10 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
+import { useSelector } from 'react-redux';
 import TodoItem from './TodoItem';
 import Loading from './Loading';
 
-const TodoList = ({ todos, loading }) => {
+const TodoList = () => {
+    const loading = useSelector(state => state.todoReducer.loading);
+    const todos = useSelector(state => state.todoReducer.todos);
+
     if (loading) {
         return <Loading />;
     }
@@ -16,16 +19,6 @@ const TodoList = ({ todos, loading }) => {
             })}
         </ul>
     );
-};
-
-TodoList.defaultProps = {
-    todos: [],
-    loading: false,
-};
-
-TodoList.propTypes = {
-    todos: PropTypes.arrayOf(PropTypes.shape({})),
-    loading: PropTypes.bool,
 };
 
 export default TodoList;
