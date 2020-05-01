@@ -38,12 +38,9 @@ module.exports = require('./webpack.config')({
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template: 'node_modules/html-webpack-template/index.ejs',
-            title: 'boilerplate',
-            appMountId: 'app',
-            favicon: './client/assets/gultech.png',
-            chunksSortMode: 'dependency',
-            inject: false,
+            template: 'client/index.html',
+            title: 'Boilerplate',
+            chunksSortMode: 'auto',
         }),
     ],
 

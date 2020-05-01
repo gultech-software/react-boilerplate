@@ -18,24 +18,9 @@ module.exports = require('./webpack.config')({
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: 'node_modules/html-webpack-template/index.ejs',
-            title: 'boilerplate',
-            appMountId: 'app',
-            favicon: './client/assets/gultech.png',
-            chunksSortMode: 'dependency',
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeRedundantAttributes: true,
-                useShortDoctype: true,
-                removeEmptyAttributes: true,
-                removeStyleLinkTypeAttributes: true,
-                keepClosingSlash: true,
-                minifyJS: true,
-                minifyCSS: true,
-                minifyURLs: true,
-            },
-            inject: true,
+            template: 'client/index.html',
+            title: 'Boilerplate',
+            chunksSortMode: 'auto',
         }),
         new CircularDependencyPlugin({
             exclude: /a\.js|node_modules/,

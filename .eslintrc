@@ -85,6 +85,6 @@
     "no-param-reassign": ["error", {
       "props": false
     }],
-    "react/destructuring-assignment": [true, "always", { "ignoreClassFields": true }]
+    "react/destructuring-assignment": [2, "always", { "ignoreClassFields": true }]
   }
 }

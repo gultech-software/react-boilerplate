@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-export const addItemAction = item => {
-    return dispatch => {
+export const addItemAction = (item) => {
+    return (dispatch) => {
         dispatch({
             type: 'ITEMS_ADD_LOADING',
         });
 
         return axios
             .post('/api/todo', item)
-            .then(response => {
+            .then((response) => {
                 dispatch({
                     type: 'ITEMS_ADD_LOADED',
                     payload: response.data,
@@ -16,7 +16,7 @@ export const addItemAction = item => {
 
                 dispatch(getAllItemsAction());
             })
-            .catch(response => {
+            .catch((response) => {
                 dispatch({
                     type: 'ITEMS_ADD_FAILED',
                     error: response.message,
@@ -26,20 +26,20 @@ export const addItemAction = item => {
 };
 
 export const getAllItemsAction = () => {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({
             type: 'ITEMS_GET_LOADING',
         });
 
         return axios
             .get('/api/todo')
-            .then(response => {
+            .then((response) => {
                 dispatch({
                     type: 'ITEMS_GET_LOADED',
                     todos: response.data,
                 });
             })
-            .catch(response => {
+            .catch((response) => {
                 dispatch({
                     type: 'ITEMS_GET_FAILED',
                     error: response.message,
@@ -48,8 +48,8 @@ export const getAllItemsAction = () => {
     };
 };
 
-export const updateItemAction = item => {
-    return dispatch => {
+export const updateItemAction = (item) => {
+    return (dispatch) => {
         dispatch({
             type: 'ITEMS_UPDATE_LOADING',
         });
@@ -62,7 +62,7 @@ export const updateItemAction = item => {
                 });
                 dispatch(getAllItemsAction());
             })
-            .catch(response => {
+            .catch((response) => {
                 dispatch({
                     type: 'ITEMS_UPDATE_FAILED',
                     error: response.message,

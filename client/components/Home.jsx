@@ -12,7 +12,7 @@ const Home = () => {
         dispatch(getAllItemsAction());
     }, []);
 
-    const addItem = e => {
+    const addItem = (e) => {
         e.preventDefault();
         if (title.trim().length > 0) {
             dispatch(addItemAction({ title }));
@@ -27,7 +27,7 @@ const Home = () => {
                 <input
                     type="text"
                     value={title}
-                    onChange={e => {
+                    onChange={(e) => {
                         setTitle(e.target.value);
                     }}
                 />
