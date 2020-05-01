@@ -7,8 +7,9 @@
 - Node https://nodejs.org/en/download/
 - Git https://git-scm.com/downloads
 - Docker
--- Windows https://docs.docker.com/docker-for-windows/install/
--- Linux https://docs.docker.com/install/linux/docker-ce/ubuntu/
+
+- Windows https://docs.docker.com/docker-for-windows/install/
+- Linux https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
 Its recommended to use Linux or linux compatible console. Git Bash has a lot of usefull commands if you're using Windows.
 
@@ -21,7 +22,7 @@ Docker is used to build containers and images for the production environment
 - Download the project
 
 ```
-git clone https://[USERNAME]@bitbucket.org/gultech/boilerplate.git
+git clone https://github.com/gultech-software/react-boilerplate.git
 ```
 
 - Install the project
@@ -60,13 +61,7 @@ files, you might bave to restart the application.
 
 ## Git Flow
 
-Its bad practise to make changes to the master branch. Create a new branch with
-your changes and merge in with Pull Requests so the rest of the team will be able
-to do a Quality Assurance of the code.
-
-For more information about gitflow, read:
-
-https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+To be continued
 
 ## Project Structure
 

@@ -14,7 +14,7 @@ RUN npm run build --loglevel info
 ###################################
 FROM node:alpine
 
-MAINTAINER Gultech
+LABEL key="Gultech"
 
 # Sett riktig tidssone for image og container. Ellers vil dette bli en eller annen default som vi ikke har kontroll over.
 ENV TZ=Europe/Oslo
